@@ -1,0 +1,31 @@
+RewriteEngine On
+
+# external redirect from actual URL to pretty one
+#RewriteCond %{THE_REQUEST} /sign-in\.html[?\s] [NC]
+#RewriteRule ^ home [R=302,L,NE]
+
+# internal forward from pretty URL to actual one
+#RewriteRule ^home/?$ sign-in.html [L,NC]
+
+# passing value in URL
+#RewriteRule ^edit/(.*)$ edit.html?id=$1&%{QUERY_STRING} [L]
+
+#ErrorDocument 404 /Overflow/views/authentication/general/error-404.html
+
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteCond %(REQUEST_FILENAME) !-f
+
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+ErrorDocument 404 /Overflow/views/error.php
+
+###########################################
+##RewriteCond %{REQUEST_FILENAME} !-d
+
+##RewriteCond %{REQUEST_FILENAME}\.php -f
+
+##RewriteRule ^fileshare/([^.{1,}$])/([^.{1,}$]) fileshare.php?uid=$1&id=$2 [NC,L]
+
+Options -Indexes
+IndexIgnore *
